@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Course Management System for EV</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/ev/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/ev/css/signin.css}" rel="stylesheet">
+    <script type="text/javascript" src="/ev/js/jquery-3.2.1.slim.min.js" ></script>
+    <script>
+        $(function () {
+            $("#reg").click(function () {
+                window.location.href="/toRegister";
+            });
+        });
+    </script>
+
+</head>
+
+<body class="text-center">
+<form class="form-signin" th:action="@{/toLogin}" method="post" >
+    <img class="mb-4" th:src="@{/ev/img/title.jpg}" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}">Please sign in</h1>
+    <input name="username" type="text" class="form-control" th:placeholder="#{login.username}" required="" autofocus="">
+    <input name="password" type="password" class="form-control" th:placeholder="#{login.password}" required="">
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" value="remember-me">[[#{login.remember}]]
+        </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.btn1}" >Sign in</button>
+    <button id="reg" class="btn btn-lg btn-primary btn-block" type="button" th:text="#{login.btn2}" >Register</button>
+    <p class="mt-5 mb-3 text-muted">© 2019-2020</p>
+    <a class="btn btn-sm" th:href="@{/toLogin(l='zh_CN')}">中文</a>
+    <a class="btn btn-sm" th:href="@{/toLogin(l='en_US')}">English</a>
+</form>
+
+</body>
+
+</html>

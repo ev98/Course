@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Course Management System for EV</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/ev/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/ev/css/dashboard.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/layuiadmin/layui/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/layuiadmin/style/admin.css}" media="all">
+    <link rel="stylesheet" th:href="@{/layuiadmin/style/login.css}" media="all">
+    <style type="text/css">
+        /* Chart.js */
+
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+    </style>
+</head>
+
+<body>
+<!--引入topbar-->
+<div th:replace="commons/bar::topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!--引入sidebar-->
+        <div th:replace="commons/bar::#sidebar(activeUri='info.html')"></div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <form th:action="@{/updateUser}" method="post">
+                <div class="layui-fluid">
+                    <div class="layui-row layui-col-space15">
+                        <div class="layui-col-md12">
+                            <div class="layui-card">
+                                <div class="layui-card-header">设置我的资料</div>
+                                <div class="layui-card-body" pad15>
+                                    <div class="layui-form" lay-filter="">
+                                        <input type="hidden" name="id" th:value="${userInfo.id}">
+                                        <input type="hidden" name="role" th:value="${userInfo.role}">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">用户名</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="username" th:value="${userInfo.username}"
+                                                       readonly
+                                                       class="layui-input">
+                                            </div>
+                                            <div class="layui-form-mid layui-word-aux">不可修改。一般用于后台登入名</div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">密码</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="password" th:value="${userInfo.password}"
+                                                       lay-verify="pass"
+                                                       autocomplete="off" placeholder="请输入密码" class="layui-input">
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">姓名</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="name" th:value="${userInfo.name}"
+                                                       lay-verify="nickname"
+                                                       autocomplete="off" placeholder="请输入姓名" class="layui-input">
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">性别</label>
+                                            <div class="layui-input-block">
+                                                <input type="radio" name="gender" value="男" title="男"
+                                                       th:checked="${userInfo.gender=='男'}">
+                                                <input type="radio" name="gender" value="女" title="女"
+                                                       th:checked="${userInfo.gender=='女'}">
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">专业</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="major" th:value="${userInfo.major}"
+                                                       lay-verify=""
+                                                       autocomplete="off" placeholder="请输入专业" class="layui-input">
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">学院</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="college" th:value="${userInfo.college}"
+                                                       lay-verify=""
+                                                       autocomplete="off" placeholder="请输入学院" class="layui-input">
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">住址</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="address" th:value="${userInfo.address}"
+                                                       lay-verify=""
+                                                       autocomplete="off" placeholder="请输入住址" class="layui-input">
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <div class="layui-input-block">
+                                                <button type="submit" class="layui-btn">确认修改
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="ev/js/jquery-3.2.1.slim.min.js"></script>
+<script type="text/javascript" src="ev/js/popper.min.js"></script>
+<script type="text/javascript" src="ev/js/bootstrap.min.js"></script>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'set']);
+</script>
+</body>
+
+</html>

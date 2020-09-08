@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Course Management System for EV</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/ev/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/ev/css/dashboard.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/layuiadmin/layui/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/layuiadmin/style/admin.css}" media="all">
+    <link rel="stylesheet" th:href="@{/layuiadmin/style/login.css}" media="all">
+    <style type="text/css">
+        /* Chart.js */
+
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+    </style>
+</head>
+
+<body>
+<!--引入topbar-->
+<div th:replace="commons/bar::topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!--引入sidebar-->
+        <div th:replace="commons/bar::#sidebar(activeUri='index.html')"></div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        最近知识点
+                        <a lay-href="" class="layui-a-tips">全部知识点</a>
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="layui-row layui-col-space10">
+                            <div class="layui-col-xs12 layui-col-sm4">
+                                <div class="layuiadmin-card-text">
+                                    <div class="layui-text-top"><i class="layui-icon layui-icon-water"></i><a lay-href="">JavaWeb</a></div>
+                                    <p class="layui-text-center">Spring Security的表单提交需要使用post方法才能实现权限管理功能</p>
+                                    <p class="layui-text-bottom"><a lay-href="">Security</a><span>1 天前</span></p>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs12 layui-col-sm4">
+                                <div class="layuiadmin-card-text">
+                                    <div class="layui-text-top"><i class="layui-icon layui-icon-upload-circle"></i><a lay-href="">JavaWeb</a></div>
+                                    <p class="layui-text-center">Spring Security中获取当前用户信息的方法</p>
+                                    <p class="layui-text-bottom"><a lay-href="">Security</a><span>1 天前</span></p>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs12 layui-col-sm4">
+                                <div class="layuiadmin-card-text">
+                                    <div class="layui-text-top"><i class="layui-icon layui-icon-form"></i><a lay-href="">JavaWeb</a></div>
+                                    <p class="layui-text-center">form表单绑定多个点击事件的3种方法</p>
+                                    <p class="layui-text-bottom"><a lay-href="">form</a><span>2 天前</span></p>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs12 layui-col-sm4">
+                                <div class="layuiadmin-card-text">
+                                    <div class="layui-text-top"><i class="layui-icon layui-icon-form"></i><a lay-href="">数据库</a></div>
+                                    <p class="layui-text-center">select语句的进阶使用汇总</p>
+                                    <p class="layui-text-bottom"><a lay-href="">select</a><span>3 天前</span></p>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs12 layui-col-sm4">
+                                <div class="layuiadmin-card-text">
+                                    <div class="layui-text-top"><i class="layui-icon layui-icon-form"></i><a lay-href="">JavaWeb</a></div>
+                                    <p class="layui-text-center">th:each中对象后加Stat可以直接调用状态变量</p>
+                                    <p class="layui-text-bottom"><a lay-href="">thymeleaf</a><span>3 天前</span></p>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs12 layui-col-sm4">
+                                <div class="layuiadmin-card-text">
+                                    <div class="layui-text-top"><i class="layui-icon layui-icon-form"></i><a lay-href="">JavaWeb</a></div>
+                                    <p class="layui-text-center">Spring Security连接数据库进行权限控制的方法</p>
+                                    <p class="layui-text-bottom"><a lay-href="">Security</a><span>3 天前</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-sm12">
+                    <div class="layui-col-xs12 layui-col-sm6">
+                        <div class="layui-card">
+                            <div class="layui-card-header">动态</div>
+                            <div class="layui-card-body">
+                                <dl class="layuiadmin-card-status">
+                                    <dd>
+                                        <div class="layui-status-img"><a href="javascript:;"><img src="../../layuiadmin/style/res/logo.png"></a></div>
+                                        <div>
+                                            <p>张老师发布了英语读写译课程</p>
+                                            <span>3分钟前</span>
+                                        </div>
+                                    </dd>
+                                    <dd>
+                                        <div class="layui-status-img"><a href="javascript:;"><img src="../../layuiadmin/style/res/logo.png"></a></div>
+                                        <div>
+                                            <p>李老师的大学物理课程发起了一次课堂调查</p>
+                                            <span>5小时前</span>
+                                        </div>
+                                    </dd>
+                                    <dd>
+                                        <div class="layui-status-img"><a href="javascript:;"><img src="../../layuiadmin/style/res/logo.png"></a></div>
+                                        <div>
+                                            <p>赵老师的高等数学发起了第三周的签到</p>
+                                            <span>8小时前</span>
+                                        </div>
+                                    </dd>
+                                    <dd>
+                                        <div class="layui-status-img"><a href="javascript:;"><img src="../../layuiadmin/style/res/logo.png"></a></div>
+                                        <div>
+                                            <p>韩老师发布了移动设备开发课程</p>
+                                            <span>1天前</span>
+                                        </div>
+                                    </dd>
+                                    <dd>
+                                        <div class="layui-status-img"><a href="javascript:;"><img src="../../layuiadmin/style/res/logo.png"></a></div>
+                                        <div>
+                                            <p>姜老师的Linux课程人数已满</p>
+                                            <span>3天前</span>
+                                        </div>
+                                    </dd>
+                                    <dd>
+                                        <div class="layui-status-img"><a href="javascript:;"><img src="../../layuiadmin/style/res/logo.png"></a></div>
+                                        <div>
+                                            <p>陈老师的软件工程课程发起了一次签到</p>
+                                            <span>3天前</span>
+                                        </div>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs12 layui-col-sm6">
+                        <div class="layui-card">
+                            <div class="layui-card-header">学生全国分布</div>
+                            <div class="layui-card-body">
+                                <div class="layui-row layui-col-space15">
+                                    <div class="layui-col-sm12">
+                                        <table class="layui-table layuiadmin-page-table" lay-skin="line">
+                                            <thead>
+                                            <tr>
+                                                <th>排名</th>
+                                                <th>地区</th>
+                                                <th>人数</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>河南</td>
+                                                <td>82310</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>河北</td>
+                                                <td>59190</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>广东</td>
+                                                <td>55891</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>山东</td>
+                                                <td>51919</td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>湖北</td>
+                                                <td>39231</td>
+                                            </tr>
+                                            <tr>
+                                                <td>6</td>
+                                                <td>山西</td>
+                                                <td>37109</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7</td>
+                                                <td>黑龙江</td>
+                                                <td>36432</td>
+                                            </tr>
+                                            <tr>
+                                                <td>8</td>
+                                                <td>陕西</td>
+                                                <td>27109</td>
+                                            </tr>
+                                            <tr>
+                                                <td>9</td>
+                                                <td>吉林</td>
+                                                <td>25609</td>
+                                            </tr>
+                                            <tr>
+                                                <td>10</td>
+                                                <td>山西</td>
+                                                <td>37109</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="ev/js/jquery-3.2.1.slim.min.js"></script>
+<script type="text/javascript" src="ev/js/popper.min.js"></script>
+<script type="text/javascript" src="ev/js/bootstrap.min.js"></script>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'set']);
+</script>
+
+<!-- Icons -->
+<script type="text/javascript" src="ev/js/feather.min.js"></script>
+<script>
+    feather.replace()
+</script>
+
+</body>
+
+</html>

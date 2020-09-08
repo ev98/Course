@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Course Management System for EV</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/ev/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/ev/css/dashboard.css}" rel="stylesheet">
+    <style type="text/css">
+        /* Chart.js */
+
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+    </style>
+</head>
+
+<body>
+<!--引入抽取的topbar-->
+<div th:replace="commons/bar::topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!--引入侧边栏-->
+		<div th:replace="commons/bar::#sidebar(activeUri='list.html')"></div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <form th:action="@{/updateStudent}" method="post">
+                <input type="hidden" name="id" th:value="${student.id}">
+                <input type="hidden" name="role" th:value="${student.role}">
+                <input type="hidden" name="username" th:value="${student.username}">
+                <input type="hidden" name="password" th:value="${student.password}">
+                <div class="form-group">
+                    <label>姓名</label>
+                    <input name="name" type="text" class="form-control" th:value="${student.name}">
+                </div>
+                <div class="form-group">
+                    <label>性别</label>
+                    <div>
+                        <input type="radio" name="gender" value="男" title="男"
+                               th:checked="${student.gender=='男'}">男
+                        <input type="radio" name="gender" value="女" title="女"
+                               th:checked="${student.gender=='女'}">女
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>专业</label>
+                    <input name="major" type="text" class="form-control" th:value="${student.major}">
+                </div>
+                <div class="form-group">
+                    <label>学院</label>
+                    <input name="college" type="text" class="form-control" th:value="${student.college}">
+                </div>
+                <div class="form-group">
+                    <label>住址</label>
+                    <input name="address" type="text" class="form-control" th:value="${student.address}">
+                </div>
+                <button type="submit" class="btn btn-primary">修改</button>
+            </form>
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"
+        th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
+<script type="text/javascript" src="asserts/js/popper.min.js"
+        th:src="@{/webjars/popper.js/1.11.1/dist/popper.js}"></script>
+<script type="text/javascript" src="asserts/js/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.js}"></script>
+</body>
+
+</html>
